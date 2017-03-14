@@ -2,6 +2,7 @@ require 'random_data'
 5.times { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: RandomData.random_sentence) }
 admin = User.create!(name: "Alex Gould", email: "alexgould17@gmail.com", password: "123456", role: :admin)
 member = User.create!(name: "Test Member", email: "member@example.com", password: "123456")
+moderator = User.create!(name: "Test Mod", email: "moderator@example.com", password: "123456", role: :moderator)
 users = User.all
 15.times { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
 topics = Topic.all
