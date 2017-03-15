@@ -7,7 +7,7 @@ users = User.all
 topics = Topic.all
 50.times { Post.create!(user: users.sample, topic: topics.sample, title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 posts = Post.all
-100.times { Comment.create!(post: posts.sample, body: RandomData.random_paragraph) }
+100.times { Comment.create!(post: posts.sample, body: RandomData.random_paragraph, user: users.sample) }
 
 puts "Seed finished"
 puts "#{User.count} users created"
