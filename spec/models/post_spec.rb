@@ -37,6 +37,13 @@ RSpec.describe Post, type: :model do
       @down_votes = post.votes.where(value: -1).count
     end
 
+    describe "create_vote" do
+      it "creates a new upvote after the post is created" do
+        new_post = topic.posts.create!(title: "Title", body: "New post for testing votes", user: user)
+        expect(new_post.votes.count).to eq(1)
+      end
+    end
+
     describe "#up_votes" do
       it "counts the number of votes with value = 1" do
         expect( post.up_votes ).to eq(@up_votes)
