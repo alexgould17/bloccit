@@ -1,0 +1,6 @@
+You've favorited "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+You will receive updates when the post is commented on now. To stop the mails, unfavorite at the link below:
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>

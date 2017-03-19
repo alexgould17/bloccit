@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>You've favorited "<%= @post.title %>"</h1>
+    <p>
+      You will receive updates when the post is commented on now. To stop the mails, unfavorite at the link below:
+    </p>
+    <p>
+      <%= link_to "View Post on site", topic_post_url(@post.topic, @post) %>
+    </p>
+  </body>
+</html>

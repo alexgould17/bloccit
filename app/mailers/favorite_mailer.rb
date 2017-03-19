@@ -12,4 +12,16 @@ class FavoriteMailer < ApplicationMailer
 
     mail(to: user.email, subject: "New comment on #{post.title}")
   end
+
+  def new_post(user, post, favorite)
+    headers['Message-ID'] = "<favorite/#{favorite.id}@bloccit>"
+    headers["In-Reply-To"] = "<post/#{post.id}@bloccit>"
+    headers["References"] = "<post/#{post.id}@bloccit>"
+
+    @user = user
+    @post = post
+    @favorite = favorite
+
+    mail(to: user.email, subject: "You've favorited #{post.title}")
+  end
 end
