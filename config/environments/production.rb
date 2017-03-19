@@ -83,4 +83,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Mailer for favorites
+  config.action_mailer.default_url_options = { host: 'guarded-shelf-93839.herokuapp.com' }
 end
