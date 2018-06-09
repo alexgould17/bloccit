@@ -1,14 +1,4 @@
 module RandomData
-  def self.random_name
-    first_name = random_word.capitalize
-    last_name = random_word.capitalize
-    first_name << " " << last_name
-  end
-
-  def self.random_email
-    "#{random_word}@example.com"
-  end
-
   def self.random_paragraph
     sentences = []
     rand(4..6).times { sentences << random_sentence }
@@ -16,13 +6,27 @@ module RandomData
   end
 
   def self.random_sentence
-    strings = []
-    rand(3..8).times { strings << random_word }
-    strings.join(" ").capitalize << "."
+    words = []
+    rand(3..8).times { words << random_phrase }
+    words.join(" ").capitalize << "."
   end
 
-  def self.random_word
-    letters = ('a'..'z').to_a.shuffle
-    letters[0,rand(3..8)].join
+  def self.random_phrase
+    case rand(1..7)
+    when 1
+      Faker::Book.title
+    when 2
+      Faker::Cat.breed
+    when 3
+      Faker::Coffee.blend_name
+    when 4
+      Faker::Dog.breed
+    when 5
+      Faker::Food.dish
+    when 6
+      Faker::Pokemon.move
+    when 7
+      Faker::SiliconValley.app
+    end
   end
 end

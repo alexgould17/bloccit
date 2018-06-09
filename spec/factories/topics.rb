@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :topic do
-    name RandomData.random_name
-    description RandomData.random_sentence
+    name Faker::LeagueOfLegends.champion
+    description Faker::LeagueOfLegends.quote
   end
 end

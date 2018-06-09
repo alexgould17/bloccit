@@ -1,26 +1,56 @@
 require 'random_data'
-5.times { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: RandomData.random_sentence) }
-admin = User.create!(name: "Alex Gould", email: "alexgould17@gmail.com", password: "123456", role: :admin)
-member = User.create!(name: "Test Member", email: "member@example.com", password: "123456")
-users = User.all
-15.times { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
-topics = Topic.all
+
+# Our standard test password, admin email & test arrays: users, topics & posts
+test_users = []
+test_topics = []
+test_posts = []
+test_pw = "wsxedc"
+admin_email = "admin@test.test"
+
+# Create our test users: 1 admin & 5 standard users
+test_users << User.find_or_create_by(email: admin_email) do |admin|
+  admin.name = "Test Admin"
+  admin.password = test_pw
+  admin.role = :admin
+end
+5.times do
+  test_users << User.create!(
+    name: Faker::DragonBall.unique.character,
+    email: Faker::Internet.unique.safe_email,
+    password: test_pw
+  )
+end
+# Create our test bloccit data, 15 topics, 50 posts, 100 comments & 0-10 votes for each comment.
+15.times do
+  test_topics << Topic.create!(
+    name: RandomData.random_sentence,
+    description: RandomData.random_paragraph
+  )
+end
 50.times do
-  post = Post.create!(
-    user: users.sample,
-    topic: topics.sample,
+  test_posts << Post.create!(
+    user: test_users.sample,
+    topic: test_topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
   )
-  post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
-  rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
+  test_posts.last.update_attribute(:created_at, rand(10.minutes..1.year).ago)
+  rand(0..10).times do
+    test_posts.last.votes.create!(value: [-1, 1].sample, user: test_users.sample)
+  end
 end
 posts = Post.all
-100.times { Comment.create!(post: posts.sample, body: RandomData.random_paragraph, user: users.sample) }
+100.times do
+  Comment.create!(
+    post: test_posts.sample,
+    body: RandomData.random_paragraph,
+    user: test_users.sample
+  )
+end
 
-puts "Seed finished"
-puts "#{User.count} users created"
-puts "#{Topic.count} topics created"
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
-puts "#{Vote.count} votes created"
+puts "Seeding finished"
+puts "#{User.count} users in the database."
+puts "#{Topic.count} topics in the database."
+puts "#{Post.count} posts in the database."
+puts "#{Comment.count} comments in the database."
+puts "#{Vote.count} votes in the database."

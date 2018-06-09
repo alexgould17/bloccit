@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  pw = RandomData.random_sentence
+  pw = "wsxedc"
   factory :user do
-    name RandomData.random_name
-    sequence(:email){|n| "user#{n}@factory.com"}
+    name Faker::OnePiece.character
+    sequence(:email){|n| "test_user#{n}@test.test"}
     password pw
     password_confirmation pw
     role :member
