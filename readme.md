@@ -1,25 +1,7 @@
-# Bloccit
-## A Reddit replica to teach the fundamentals of web development & Rails
+# Welcome to bloccit!
+blocitoff is a Reddit-like app that I created using Ruby on Rails, HTML5, CSS3 & JavaScript while completing the Web Developer Track at bloc.io. You can sign up, sign in & sign out; and create, view, edit & delete topics, posts & comments, as well as vote on posts. Test/dev db's are Sqlite3, production db is PostgreSQL. Bootstrap was used for the styling, and Faker for (most of) the pre-seeded data. Please note that because of a current discrepancy between test/dev & production environments, Topics are not able to be deleted at this time (deeper db work needed). A solution is being worked on & this readme will be updated when one is found.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## To Use The App
+- Go to https://ag17-bloccit.herokuapp.com/
+- Sign in using the email admin@test.test & password wsxedc
+- Have fun & poke around! Try creating your own topic, or commenting on a post!
